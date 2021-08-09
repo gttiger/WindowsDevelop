@@ -1,0 +1,2 @@
+# WindowsDevelop
+some simple function
