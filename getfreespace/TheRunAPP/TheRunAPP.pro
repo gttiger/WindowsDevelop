@@ -1,44 +1,48 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2021-08-09T15:48:57
+# Project created by QtCreator 2021-08-09T21:49:44
 #
 #-------------------------------------------------
 
-QT       -= gui
-QT       += core
-TARGET = getfreespace
-TEMPLATE = lib
+QT       += core gui xml
 
-DEFINES += GETFREESPACE_LIBRARY
-CONFIG += c++11
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+
+TARGET = TheRunAPP
+TEMPLATE = app
+
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which has been marked as deprecated (the exact warnings
 # depend on your compiler). Please consult the documentation of the
 # deprecated API in order to know how to port your code away from it.
 DEFINES += QT_DEPRECATED_WARNINGS
-#CONFIG  += plugin
+
 # You can also make your code fail to compile if you use deprecated APIs.
 # In order to do so, uncomment the following line.
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
-
 CONFIG += debug_and_release
-CONFIG(debug,debug|release){
-    TARGET  = Getfreespaced
+CONFIG(debug,debug|release) {
+    TARGET  = TheRunAppd
     DESTDIR += $$PWD/../bin
-}else{
-    TARGET = Getfreespace
+}else {
+    TARGET  = TheRunApp
+    DEPENDPATH += $$PWD/../binr
     DESTDIR += $$PWD/../binr
 }
 
 SOURCES += \
-        getfreespace.cpp
+        main.cpp \
+        mainwindow.cpp
 
 HEADERS += \
-        getfreespace.h \
-        getfreespace_global.h 
+        mainwindow.h
 
-unix {
-    target.path = /usr/lib
-    INSTALLS += target
-}
+FORMS += \
+        mainwindow.ui
+
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../lib/ -lGetfreespace
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../lib/ -lGetfreespaced
+
+INCLUDEPATH += $$PWD/../include
+DEPENDPATH += $$PWD/../include

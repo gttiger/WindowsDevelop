@@ -11,5 +11,7 @@ public:
     Getfreespace();
     quint64 getDiskFreeSpace(QString driver);
 };
+//显示调用动态库时需要使用使用
+extern "C" GETFREESPACESHARED_EXPORT  quint64 getDiskFreeSpace(QString driver); //删除类Dll的对象
 
 #endif // GETFREESPACE_H

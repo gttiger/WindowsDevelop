@@ -6,7 +6,6 @@ Getfreespace::Getfreespace()
 }
 
 quint64 Getfreespace::getDiskFreeSpace(QString driver){
-
     LPCWSTR lpcwstrDriver=(LPCWSTR)driver.utf16();
 
     ULARGE_INTEGER liFreeBytesAvailable, liTotalBytes, liTotalFreeBytes;
